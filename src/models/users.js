@@ -1,10 +1,10 @@
 import { message } from 'antd';
 import { routerRedux } from 'dva/router';
-import * as courseService from '../services/course.js';
+import * as usersService from '../services/users.js';
 import { formatCourseList } from '../utils/format.js';
 
 export default {
-  namespace: 'course',
+  namespace: 'users',
   state: {
     list: [],
   },
@@ -13,22 +13,22 @@ export default {
   },
   effects: {
     *fetch({ query }, { call, put }) {
-      const { data: { courses } } = yield call(courseService.fetch, { query });
-      yield put({ type: 'save', payload: { list: formatCourseList(courses) } });
+      const { data: { users } } = yield call(usersService.fetch, { query });
+      yield put({ type: 'save', payload: { list: formatCourseList(users) } });
     },
     *add({ payload }, { call, put }) {
-      const { data } = yield call(courseService.add, { payload });
+      const { data } = yield call(usersService.add, { payload });
       if (data.status === 200) {
         message.success(data.message);
         yield put(routerRedux.push({
-          pathname: 'course/list',
+          pathname: 'users/list',
         }));
       } else {
         message.error(data.message);
       }
     },
     *del({ payload }, { call, put }) {
-      const { data } = yield call(courseService.del, { payload });
+      const { data } = yield call(usersService.del, { payload });
       if (data.status === 200) {
         message.success(data.message);
         yield put({
@@ -42,7 +42,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
-        if (pathname === '/course/list') {
+        if (pathname === '/users/list') {
           dispatch({ type: 'fetch', query });
         }
       });

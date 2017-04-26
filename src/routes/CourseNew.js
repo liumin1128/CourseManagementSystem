@@ -12,6 +12,10 @@ class CourseNew extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.dispatch({
+          type: 'course/add',
+          payload: { ...values },
+        });
       }
     });
   };
@@ -27,29 +31,25 @@ class CourseNew extends React.Component {
       <div className={styles.normal}>
         <Form onSubmit={this.handleSubmit}>
           <FormItem
-            label="Note"
+            label="课程名称"
             labelCol={{ span: 4 }}
             wrapperCol={{ span: 8 }}
           >
-            {getFieldDecorator('note', {
-              rules: [{ required: true, message: 'Please input your note!' }],
+            {getFieldDecorator('name', {
+              rules: [{ required: true, message: '请输入课程名称!' }],
             })(
               <Input />,
             )}
           </FormItem>
           <FormItem
-            label="Gender"
+            label="课程描述"
             labelCol={{ span: 4 }}
             wrapperCol={{ span: 8 }}
           >
-            {getFieldDecorator('gender', {
-              rules: [{ required: true, message: 'Please select your gender!' }],
-              onChange: this.handleSelectChange,
+            {getFieldDecorator('desc', {
+              rules: [{ required: true, message: '请输入课程名称!' }],
             })(
-              <Select placeholder="Select a option and change input text above">
-                <Option value="male">male</Option>
-                <Option value="female">female</Option>
-              </Select>,
+              <Input />,
             )}
           </FormItem>
           <FormItem

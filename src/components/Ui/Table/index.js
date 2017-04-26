@@ -43,6 +43,12 @@ function MyTable({ dataSource, loading, keys: propKeys, columns: propColumns }) 
             dataIndex: i,
             key: i,
           };
+        case 'createdAt':
+          return {
+            title: '时间',
+            dataIndex: i,
+            key: i,
+          };
         case 'img':
           return {
             title: '图片',

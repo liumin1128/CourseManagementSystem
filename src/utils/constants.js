@@ -31,4 +31,20 @@ export const ROUTE_CONF = [
       url: '/course/new',
       auth: 'course',
     }],
+  }, {
+    text: '用户管理',
+    key: 'users',
+    icon: 'user',
+    url: '/users',
+    sub: [{
+      text: '用户列表',
+      key: 'users/list',
+      url: '/users/list',
+      auth: 'users',
+    }, {
+      text: '添加用户',
+      key: 'users/new',
+      url: '/users/new',
+      auth: 'users',
+    }],
   }];

@@ -3,20 +3,21 @@ import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import { Card, Tooltip, Button } from 'antd';
 import Table from '../components/Ui/Table';
-import styles from './CourseList.less';
+import styles from './UsersList.less';
 
-class CourseList extends Component {
+class UsersList extends Component {
   constructor(props) {
     super(props);
-    this.keys = ['name', 'desc', 'createdAt', 'op'];
+    this.keys = ['nickName', 'avatarUrl', 'createdAt', 'op'];
     this.columns = [{
-      title: '名称',
-      dataIndex: 'name',
-      key: 'name',
+      title: '昵称',
+      dataIndex: 'nickName',
+      key: 'nickName',
     }, {
-      title: '描述',
-      dataIndex: 'desc',
-      key: 'desc',
+      title: '头像',
+      dataIndex: 'avatarUrl',
+      key: 'avatarUrl',
+      render: avatar => <img className={styles.avatar} src={avatar} role="presentation" />,
     }, {
       title: '操作',
       dataIndex: 'op',
@@ -29,7 +30,7 @@ class CourseList extends Component {
   }
   delHandler = (record) => {
     this.props.dispatch({
-      type: 'course/del',
+      type: 'users/del',
       payload: {
         id: record.id,
       },
@@ -37,7 +38,7 @@ class CourseList extends Component {
   }
   addHandler = () => {
     this.props.dispatch(routerRedux.push({
-      pathname: 'course/new',
+      pathname: 'users/new',
     }));
   }
   render() {
@@ -57,11 +58,11 @@ class CourseList extends Component {
 }
 
 function mapStateToProps(state) {
-  const { list } = state.course;
+  const { list } = state.users;
   return {
     list,
-    loading: state.loading.models.course,
+    loading: state.loading.models.users,
   };
 }
 
-export default connect(mapStateToProps)(CourseList);
+export default connect(mapStateToProps)(UsersList);

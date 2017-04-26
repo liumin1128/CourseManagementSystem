@@ -1,7 +1,7 @@
 import request from '../utils/request';
 
 export async function fetch() {
-  return request('/api/course/list');
+  return request('/api/users/list');
 }
 
 export async function add({ payload }) {
@@ -13,7 +13,7 @@ export async function add({ payload }) {
     method: 'POST',
     body: JSON.stringify(payload),
   };
-  return request('/api/course/add', options);
+  return request('/api/users/add', options);
 }
 
 export async function del({ payload }) {
@@ -25,6 +25,6 @@ export async function del({ payload }) {
     method: 'DELETE',
     body: JSON.stringify(payload),
   };
-  return request('/api/course/del', options);
+  return request('/api/users/del', options);
 }
 

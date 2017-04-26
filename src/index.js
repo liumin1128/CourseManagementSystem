@@ -7,7 +7,9 @@ const app = dva();
 
 app.model(require('./models/user'));
 
-app.model(require("./models/course"));
+app.model(require('./models/users'));
+
+app.model(require('./models/course'));
 
 // 2. Plugins
 // app.use({});
