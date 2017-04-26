@@ -1,4 +1,5 @@
 import * as courseService from '../services/course.js';
+import { formatCourseList } from '../utils/format.js';
 
 export default {
   namespace: 'course',
@@ -10,9 +11,8 @@ export default {
   },
   effects: {
     *fetch({ query }, { call, put }) {
-      const data = yield call(courseService.fetch, { query });
-      console.log(data);
-      // yield put({ type: 'save', payload: { bookSource } });
+      const { data: { courses } } = yield call(courseService.fetch, { query });
+      yield put({ type: 'save', payload: { list: formatCourseList(courses) } });
     },
   },
   subscriptions: {
