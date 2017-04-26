@@ -1,0 +1,25 @@
+.normal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu {
+    line-height: 64px;
+    float: right;
+}
+.user {
+    margin-right: 8px;
+}
+.userInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+.avatar {
+    max-height: 30px;
+    max-width: 30px;
+    border-radius: 100px;
+    margin-right: 10px;
+}

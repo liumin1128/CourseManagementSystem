@@ -1,11 +1,20 @@
 import React from 'react';
-import { Router, Route } from 'dva/router';
+import { Router, Route, IndexRoute } from 'dva/router';
+import App from './routes/App.js';
+import Error from './routes/Error.js';
+
 import IndexPage from './routes/IndexPage';
+
+import CourseList from './routes/CourseList.js';
 
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
-      <Route path="/" component={IndexPage} />
+      <Route path="/" breadcrumbName="首页" component={App} >
+        <IndexRoute breadcrumbName="首页" component={IndexPage} />
+        <Route breadcrumbName="首页" path="/course/list" component={CourseList} />
+      </Route>
+      <Route path="*" component={Error} />
     </Router>
   );
 }

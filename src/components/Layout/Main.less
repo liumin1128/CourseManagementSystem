@@ -1,0 +1,80 @@
+:global {
+    html,body,#app, .ant-layout{
+        height: 100%;
+    }
+    .ant-layout-sider {
+        overflow: auto;
+        .logo {
+            width: 100%;
+            height: 32px;
+            // background: #333;
+            border-radius: 6px;
+            margin: 16px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden;
+            .icon {
+                margin: 18px;
+            }
+            .text {
+              display: block;
+              margin-left: 10px;
+              font-size: 1em;
+              color: #999;
+            //   width: 300px;
+              height: 1.5em;
+              overflow: hidden;
+            }
+        }
+    }
+    .ant-layout-sider.ant-layout-sider-collapsed {
+      overflow: visible;
+    }
+    .ant-layout-sider-collapsed .anticon{
+        font-size: 16px;
+    }
+    .ant-layout-sider-collapsed .logo .text {
+      display: none;
+    }
+    // .ant-layout-sider-collapsed .nav-text {
+    //     display: none;
+    // }
+    .ant-layout-sider-collapsed .ant-menu-submenu-title > span > span {
+        display: none;
+    }
+    .ant-layout-sider-collapsed .ant-menu-submenu-title:after {
+        display: none;
+    }
+    .ant-menu-submenu-title:after {
+        opacity: 0.5;
+    }
+    .ant-layout-header {
+        .trigger {
+            font-size: 18px;
+            line-height: 64px;
+            padding: 0 16px;
+            cursor: pointer;
+            transition: color .3s;
+            &:hover {
+              color: #108ee9;
+            }
+        }
+    }
+    
+    .ant-menu-vertical {
+        .ant-menu-submenu-title {
+            padding-left: 23px;
+            span {
+                background: #404040;
+            }
+        }
+        // .ant-menu {
+        //     background: rgba(0,0,0,0.65)
+        // }
+    }
+}
+
+.Breadcrumb {
+    margin: 16px;
+}
