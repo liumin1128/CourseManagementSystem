@@ -1,5 +1,12 @@
 {
   "entry": "src/index.js",
+  "proxy": {
+      "/api": {
+          "target": "http://localhost:3000/",
+          "changeOrigin": true,
+          "pathRewrite": { "^/api" : "" }
+      }
+  },
   "env": {
     "development": {
       "extraBabelPlugins": [

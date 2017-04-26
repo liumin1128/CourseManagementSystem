@@ -10,9 +10,9 @@ import CourseList from './routes/CourseList.js';
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
-      <Route path="/" breadcrumbName="首页" component={App} >
+      <Route path="/" breadcrumbName="后台" component={App} >
         <IndexRoute breadcrumbName="首页" component={IndexPage} />
-        <Route breadcrumbName="首页" path="/course/list" component={CourseList} />
+        <Route breadcrumbName="课程列表" path="/course/list" component={CourseList} />
       </Route>
       <Route path="*" component={Error} />
     </Router>
