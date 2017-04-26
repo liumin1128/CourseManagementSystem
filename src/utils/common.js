@@ -26,3 +26,21 @@ export const hideMoreString = (str, length) => {
     return str;
   }
 };
+
+export const getIndentity = (type, grade) => {
+  switch (type) {
+    case 'student': return '学生';
+    case 'teacher': return '老师';
+    case 'administrator': return ['管理员', '高级管理员'][grade];
+    default: return '身份异常';
+  }
+};
+
+export const type2status = (type, grade) => {
+  switch (type) {
+    case 'student': return 'default';
+    case 'teacher': return 'warning';
+    case 'administrator': return ['success', 'error'][grade];
+    default: return 'processing';
+  }
+};

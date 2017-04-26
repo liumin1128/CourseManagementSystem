@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Form, Input, Button, Cascader } from 'antd';
 import styles from './UsersNew.css';
+import { IDENTITYS } from '../utils/constants.js';
 
 const FormItem = Form.Item;
 
@@ -31,23 +32,6 @@ class UsersNew extends React.Component {
   };
   render() {
     const { getFieldDecorator } = this.props.form;
-    const options = [{
-      value: 'student',
-      label: '学生',
-    }, {
-      value: 'teacher',
-      label: '教师',
-    }, {
-      value: 'administrator',
-      label: '管理员',
-      children: [{
-        value: 0,
-        label: '普通管理员',
-      }, {
-        value: 1,
-        label: '高级管理员',
-      }],
-    }];
 
     return (
       <div className={styles.normal}>
@@ -84,7 +68,7 @@ class UsersNew extends React.Component {
               // initialValue: 'student',
               rules: [{ required: true, message: '请输入用户头像!' }],
             })(
-              <Cascader options={options} />,
+              <Cascader options={IDENTITYS} />,
             )}
           </FormItem>
           <FormItem

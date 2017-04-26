@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Card, Tooltip, Button } from 'antd';
+import { Card, Tooltip, Button, Badge } from 'antd';
 import Table from '../components/Ui/Table';
 import styles from './UsersList.less';
+import { getIndentity, type2status } from '../utils/common.js';
+
 
 class UsersList extends Component {
   constructor(props) {
     super(props);
-    this.keys = ['nickName', 'avatarUrl', 'createdAt', 'op'];
+    this.keys = ['avatarUrl', 'nickName', 'type', 'createdAt', 'op'];
     this.columns = [{
-      title: '昵称',
-      dataIndex: 'nickName',
-      key: 'nickName',
-    }, {
       title: '头像',
       dataIndex: 'avatarUrl',
       key: 'avatarUrl',
       render: avatar => <img className={styles.avatar} src={avatar} role="presentation" />,
+    }, {
+      title: '昵称',
+      dataIndex: 'nickName',
+      key: 'nickName',
+    }, {
+      title: '身份',
+      dataIndex: 'type',
+      key: 'type',
+      render: (type, record) => <Badge status={type2status(type, record.grade)} text={getIndentity(record.type, record.grade)} />,
     }, {
       title: '操作',
       dataIndex: 'op',

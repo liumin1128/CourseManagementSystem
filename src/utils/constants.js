@@ -4,6 +4,24 @@ export const qiniuUrl = 'img.huarenmatch.com';
 export const APP_ID = 'mO7qEgdANpFxcbQp5Y6XngEE-gzGzoHsz';
 export const APP_KEY = 'kToCqzxCQFj4BBYnpL6WNH5q';
 
+export const IDENTITYS = [{
+  value: 'student',
+  label: '学生',
+}, {
+  value: 'teacher',
+  label: '教师',
+}, {
+  value: 'administrator',
+  label: '管理员',
+  children: [{
+    value: 0,
+    label: '普通管理员',
+  }, {
+    value: 1,
+    label: '高级管理员',
+  }],
+}];
+
 export const ROUTE_CONF = [
   {
     text: '首页',
