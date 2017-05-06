@@ -10,12 +10,16 @@ import { getIndentity, type2status } from '../utils/common.js';
 class UsersList extends Component {
   constructor(props) {
     super(props);
-    this.keys = ['avatarUrl', 'nickName', 'type', 'createdAt', 'op'];
+    this.keys = ['avatarUrl', 'username', 'nickName', 'type', 'createdAt', 'op'];
     this.columns = [{
       title: '头像',
       dataIndex: 'avatarUrl',
       key: 'avatarUrl',
       render: avatar => <img className={styles.avatar} src={avatar} role="presentation" />,
+    }, {
+      title: '用户名·',
+      dataIndex: 'username',
+      key: 'username',
     }, {
       title: '昵称',
       dataIndex: 'nickName',

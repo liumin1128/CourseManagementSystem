@@ -11,6 +11,9 @@ export const IDENTITYS = [{
   value: 'teacher',
   label: '教师',
 }, {
+  value: 'expert',
+  label: '督导组专家',
+}, {
   value: 'administrator',
   label: '管理员',
   children: [{
@@ -64,5 +67,21 @@ export const ROUTE_CONF = [
       key: 'users/new',
       url: '/users/new',
       auth: 'users',
+    }],
+  }, {
+    text: '评价管理',
+    key: 'evaluate',
+    icon: 'user',
+    url: '/evaluate',
+    sub: [{
+      text: '学生评价',
+      key: 'evaluate/student',
+      url: '/evaluate/student',
+      auth: 'evaluate',
+    }, {
+      text: '督导组评价',
+      key: 'evaluate/expert',
+      url: '/evaluate/expert',
+      auth: 'evaluate',
     }],
   }];

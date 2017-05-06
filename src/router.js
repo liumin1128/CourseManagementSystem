@@ -13,6 +13,8 @@ import UsersList from './routes/UsersList.js';
 
 import UsersNew from './routes/UsersNew.js';
 
+import EvaluateStudent from './routes/Evaluate/Student';
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -22,6 +24,8 @@ function RouterConfig({ history }) {
         <Route breadcrumbName="添加课程" path="/course/new" component={CourseNew} />
         <Route breadcrumbName="用户列表" path="/users/list" component={UsersList} />
         <Route breadcrumbName="添加列表" path="/users/new" component={UsersNew} />
+        <Route breadcrumbName="添加列表" path="/users/new" component={UsersNew} />
+        <Route breadcrumbName="学生评价" path="/evaluate/student" component={EvaluateStudent} />
       </Route>
       <Route path="*" component={Error} />
     </Router>

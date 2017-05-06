@@ -48,6 +48,28 @@ class UsersNew extends React.Component {
             )}
           </FormItem>
           <FormItem
+            label="用户名"
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 20 }}
+          >
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: '请输入用户名!' }],
+            })(
+              <Input />,
+            )}
+          </FormItem>
+          <FormItem
+            label="密码"
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 20 }}
+          >
+            {getFieldDecorator('password', {
+              rules: [{ required: true, message: '请输入用户密码!' }],
+            })(
+              <Input />,
+            )}
+          </FormItem>
+          <FormItem
             label="用户头像"
             labelCol={{ span: 4 }}
             wrapperCol={{ span: 20 }}

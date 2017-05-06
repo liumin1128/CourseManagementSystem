@@ -4,6 +4,7 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import styles from './Main.less';
 import { ROUTE_CONF } from '../../utils/constants.js';
 import MyHeader from './Header.js';
+import LogoIcon from '../../assets/logo.jpg';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -65,7 +66,7 @@ class Main extends Component {
           onCollapse={this.onCollapse}
         >
           <div className="logo">
-            <img className="icon" style={{ height: '80%', borderRadius: '5px' }} src="http://om4lyr5bv.bkt.clouddn.com/apple-touch-icon.png" alt="" />
+            <img className="icon" style={{ height: '80%', borderRadius: '5px' }} src={LogoIcon} alt="" />
             <span className="text">华人地产网</span>
           </div>
           <Menu
