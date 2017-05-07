@@ -69,9 +69,9 @@ export const ROUTE_CONF = [
       auth: 'users',
     }],
   }, {
-    text: '评价管理',
+    text: '教学评价',
     key: 'evaluate',
-    icon: 'user',
+    icon: 'calendar',
     url: '/evaluate',
     sub: [{
       text: '学生评价',
@@ -83,5 +83,21 @@ export const ROUTE_CONF = [
       key: 'evaluate/expert',
       url: '/evaluate/expert',
       auth: 'evaluate',
+    }],
+  }, {
+    text: '系统设置',
+    key: 'setting',
+    icon: 'setting',
+    url: '/setting',
+    sub: [{
+      text: '系统设置',
+      key: 'setting/student',
+      url: '/setting/student',
+      auth: 'setting',
+    }, {
+      text: '参数设置',
+      key: 'setting/expert',
+      url: '/setting/expert',
+      auth: 'setting',
     }],
   }];

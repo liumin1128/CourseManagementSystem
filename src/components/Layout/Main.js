@@ -67,7 +67,7 @@ class Main extends Component {
         >
           <div className="logo">
             <img className="icon" style={{ height: '80%', borderRadius: '5px' }} src={LogoIcon} alt="" />
-            <span className="text">华人地产网</span>
+            <span className="text">教学质量评测系统</span>
           </div>
           <Menu
             refs="menu"
