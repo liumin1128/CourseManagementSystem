@@ -1,3 +1,7 @@
 
 .normal {
 }
+:global(.ant-select-selection-selected-value) {
+    display: flex !important;
+    align-items: center !important;
+}

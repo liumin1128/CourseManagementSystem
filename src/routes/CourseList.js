@@ -8,7 +8,7 @@ import styles from './CourseList.less';
 class CourseList extends Component {
   constructor(props) {
     super(props);
-    this.keys = ['name', 'desc', 'createdAt', 'op'];
+    this.keys = ['name', 'desc', 'teacher', 'createdAt', 'op'];
     this.columns = [{
       title: '名称',
       dataIndex: 'name',
@@ -17,6 +17,11 @@ class CourseList extends Component {
       title: '描述',
       dataIndex: 'desc',
       key: 'desc',
+    }, {
+      title: '授课老师',
+      dataIndex: 'teacher',
+      key: 'teacher',
+      render: teacher => <a>{teacher.nickName}</a>,
     }, {
       title: '操作',
       dataIndex: 'op',

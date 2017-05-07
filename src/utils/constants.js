@@ -79,6 +79,11 @@ export const ROUTE_CONF = [
       url: '/evaluate/student',
       auth: 'evaluate',
     }, {
+      text: '待评价老师',
+      key: 'evaluate/teacher',
+      url: '/evaluate/teacher',
+      auth: 'evaluate',
+    }, {
       text: '督导组评价',
       key: 'evaluate/expert',
       url: '/evaluate/expert',

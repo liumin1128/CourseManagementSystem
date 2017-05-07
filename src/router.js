@@ -14,6 +14,7 @@ import UsersList from './routes/UsersList.js';
 import UsersNew from './routes/UsersNew.js';
 
 import EvaluateStudent from './routes/Evaluate/Student';
+import EvaluateTeacher from './routes/Evaluate/Teacher';
 import EvaluateExpert from './routes/Evaluate/Expert';
 
 function RouterConfig({ history }) {
@@ -26,6 +27,7 @@ function RouterConfig({ history }) {
         <Route breadcrumbName="用户列表" path="/users/list" component={UsersList} />
         <Route breadcrumbName="添加列表" path="/users/new" component={UsersNew} />
         <Route breadcrumbName="添加列表" path="/users/new" component={UsersNew} />
+        <Route breadcrumbName="待评价教师列表" path="/evaluate/teacher" component={EvaluateTeacher} />
         <Route breadcrumbName="学生评价" path="/evaluate/student" component={EvaluateStudent} />
         <Route breadcrumbName="督导组，专家，教师评价" path="/evaluate/expert" component={EvaluateExpert} />
       </Route>
