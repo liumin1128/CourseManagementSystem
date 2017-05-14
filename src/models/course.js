@@ -38,6 +38,21 @@ export default {
         message.error(data.message);
       }
     },
+    *select({ payload }, { call, put }) {
+      const params = {
+        course: payload.id,
+        student: '590ed3ef8b411c0f548be2f3',
+      };
+      const { data } = yield call(courseService.select, { payload: params });
+      if (data.status === 200) {
+        message.success(data.message);
+        yield put({
+          type: 'fetch',
+        });
+      } else {
+        message.error(data.message);
+      }
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {

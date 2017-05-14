@@ -46,3 +46,14 @@ export const type2status = (type, grade) => {
     default: return 'processing';
   }
 };
+
+export const myRequest = ({ payload, method }) => {
+  return {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    method,
+    body: JSON.stringify(payload),
+  };
+};
