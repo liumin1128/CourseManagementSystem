@@ -16,3 +16,12 @@ export async function del({ payload }) {
 export async function select({ payload }) {
   return request('/api/course/select', myRequest({ payload, method: 'POST' }));
 }
+
+export async function evaluate({ payload }) {
+  return request('/api/course/evaluate', myRequest({ payload, method: 'POST' }));
+}
+
+export async function getTeacherGrade({ payload }) {
+  return request('/api/teacher/getgrade', myRequest({ payload, method: 'POST' }));
+}
+

@@ -18,6 +18,8 @@ import EvaluateTeacher from './routes/Evaluate/Teacher';
 import EvaluateCourse from './routes/Evaluate/Course';
 import EvaluateExpert from './routes/Evaluate/Expert';
 
+import Teacher from './routes/Teacher';
+
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -32,6 +34,7 @@ function RouterConfig({ history }) {
         <Route breadcrumbName="待评价课程" path="/evaluate/course" component={EvaluateCourse} />
         <Route breadcrumbName="学生评价" path="/evaluate/student" component={EvaluateStudent} />
         <Route breadcrumbName="督导组，专家，教师评价" path="/evaluate/expert" component={EvaluateExpert} />
+        <Route breadcrumbName="教师主页" path="/teacher" component={Teacher} />
       </Route>
       <Route path="*" component={Error} />
     </Router>

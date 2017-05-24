@@ -110,4 +110,15 @@ export const ROUTE_CONF = [
       url: '/setting/expert',
       auth: 'setting',
     }],
+  }, {
+    text: '教师相关',
+    key: 'teacher',
+    icon: 'teacher',
+    url: '/teacher',
+    sub: [{
+      text: '我的主页',
+      key: 'teacher/index',
+      url: '/teacher/index',
+      auth: 'teacher',
+    }],
   }];

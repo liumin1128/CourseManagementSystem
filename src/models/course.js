@@ -53,12 +53,30 @@ export default {
         message.error(data.message);
       }
     },
+    *evaluate({ payload }, { call, put }) {
+      console.log(payload);
+      const params = {
+        ...payload,
+        from: '590ed3ef8b411c0f548be2f3',
+        course: '590f569388a9f113a01f5c38',
+      };
+      const { data } = yield call(courseService.evaluate, { payload: { ...params } });
+      console.log(data);
+    },
+    *getTeacherGrade({ payload }, { call, put }) {
+      console.log(payload);
+      const { data } = yield call(courseService.getTeacherGrade, { payload: { id: '590ec0429c6c3b0cb82f24df' } });
+      console.log(data);
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/course/list') {
           dispatch({ type: 'fetch', query });
+        }
+        if (pathname === '/teacher') {
+          dispatch({ type: 'getTeacherGrade', query });
         }
       });
     },
