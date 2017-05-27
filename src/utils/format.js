@@ -2,6 +2,7 @@ import { preatyTime } from './common.js';
 
 export const formatCourseList = (data) => {
   return data.map((i, index) => {
+    console.log(i);
     return {
       ...i,
       key: i._id,

@@ -1,4 +1,6 @@
 import request from './request';
+import { app } from '../index.js';
+import { routerRedux } from 'dva/router';
 
 export const notEmpty = (obj, label) => {
   return new Promise((resolve, reject) => {
@@ -49,13 +51,22 @@ export const type2status = (type, grade) => {
 };
 
 export const myRequest = ({ payload, method }) => {
+  const { token } = app._store.getState().user;
+  if (!token) {
+    alert();
+    app._store.dispatch(routerRedux.push({
+      pathname: 'home',
+    }));
+    return;
+  }
+  console.log(token);
   return {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     method,
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ ...payload, token }),
   };
 };
 

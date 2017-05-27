@@ -6,7 +6,7 @@ function NotFound() {
   return (
     <div className={styles.box}>
       <h1>404</h1>
-      <h3>没有这个页面啦，要不要<Link to="/"> 返回首页</Link></h3>
+      <h3>没有这个页面啦，要不要<Link to="/home"> 返回首页</Link></h3>
     </div>
   );
 }

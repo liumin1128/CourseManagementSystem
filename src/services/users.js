@@ -1,30 +1,14 @@
-import request from '../utils/request';
+import { fetch } from '../utils/common.js';
 
-export async function fetch() {
-  return request('/api/users/list');
+export async function get() {
+  return fetch('/api/users/list');
 }
 
 export async function add({ payload }) {
-  const options = {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify(payload),
-  };
-  return request('/api/users/add', options);
+  return fetch('/api/users/add', payload);
 }
 
 export async function del({ payload }) {
-  const options = {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'DELETE',
-    body: JSON.stringify(payload),
-  };
-  return request('/api/users/del', options);
+  return fetch('/api/users/del', payload);
 }
 

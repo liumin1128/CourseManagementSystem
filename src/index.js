@@ -8,7 +8,7 @@ const appInit = () => {
 };
 
 // 1. Initialize
-const app = dva({
+export const app = dva({
   extraEnhancers: [autoRehydrate()],
 //   extraReducers:
 });

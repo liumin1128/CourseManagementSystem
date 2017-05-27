@@ -107,6 +107,7 @@ class Evaluate extends Component {
           type: 'course/evaluate',
           payload: {
             ...values,
+            course: this.props.location.query.course,
           },
         });
       }

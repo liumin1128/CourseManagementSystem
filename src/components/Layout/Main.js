@@ -53,8 +53,8 @@ class Main extends Component {
     return map[key] || [];
   };
   render() {
-    console.log(this.props);
-    console.log(this.props.location.pathname.split('/'));
+    // console.log(this.props);
+    // console.log(this.props.location.pathname.split('/'));
     const path = this.props.location.pathname.split('/');
     const { collapsed, theme, mode, openKeys } = this.state;
     const { children, dispatch, location, routes, params, nickName, avatarUrl, type } = this.props;

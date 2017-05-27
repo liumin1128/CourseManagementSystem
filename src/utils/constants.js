@@ -26,7 +26,7 @@ export const IDENTITYS = [{
 }];
 
 export const ROUTE_CONF = {
-  admin: [
+  administrator: [
     {
       text: '首页',
       key: 'index',
@@ -35,7 +35,7 @@ export const ROUTE_CONF = {
       sub: [{
         text: '首页',
         key: 'index',
-        url: '/',
+        url: '/home',
       }],
     }, {
       text: '课程管理',
@@ -121,6 +121,54 @@ export const ROUTE_CONF = {
         key: 'teacher/index',
         url: '/teacher/index',
         auth: 'teacher',
+      }],
+    },
+  ],
+  student: [
+    {
+      text: '首页',
+      key: 'index',
+      icon: 'home',
+      url: '/home',
+      sub: [{
+        text: '首页',
+        key: 'home',
+        url: '/home',
+      }],
+    }, {
+      text: '教学相关',
+      key: 'course',
+      icon: 'book',
+      url: '/course',
+      sub: [{
+        text: '课程列表',
+        key: 'course/list',
+        url: '/course/list',
+        auth: 'course',
+      }],
+    },
+  ],
+  teacher: [
+    {
+      text: '首页',
+      key: 'index',
+      icon: 'home',
+      url: '/home',
+      sub: [{
+        text: '首页',
+        key: 'home',
+        url: '/home',
+      }],
+    }, {
+      text: '教师相关',
+      key: 'teacher',
+      icon: 'book',
+      url: '/teacher',
+      sub: [{
+        text: '我的成绩',
+        key: 'teacher/achievement',
+        url: '/teacher/achievement',
+        auth: 'course',
       }],
     },
   ],

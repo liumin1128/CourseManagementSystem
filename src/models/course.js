@@ -12,8 +12,8 @@ export default {
     save(state, { payload }) { return { ...state, ...payload }; },
   },
   effects: {
-    *fetch({ query }, { call, put }) {
-      const { data: { courses } } = yield call(courseService.fetch, { query });
+    *fetch({ query }, { call, put, select }) {
+      const { data: { courses } } = yield call(courseService.fetch, { payload: { ...query } });
       yield put({ type: 'save', payload: { list: formatCourseList(courses) } });
     },
     *add({ payload }, { call, put }) {
@@ -38,11 +38,8 @@ export default {
         message.error(data.message);
       }
     },
-    *select({ payload }, { call, put }) {
-      const params = {
-        course: payload.id,
-        student: '590ed3ef8b411c0f548be2f3',
-      };
+    *select({ payload }, { call, put, select }) {
+      const params = { course: payload.id };
       const { data } = yield call(courseService.select, { payload: params });
       if (data.status === 200) {
         message.success(data.message);
@@ -53,15 +50,17 @@ export default {
         message.error(data.message);
       }
     },
-    *evaluate({ payload }, { call, put }) {
-      console.log(payload);
-      const params = {
-        ...payload,
-        from: '590ed3ef8b411c0f548be2f3',
-        course: '590f569388a9f113a01f5c38',
-      };
+    *evaluate({ payload }, { call, put, select }) {
+      const params = { ...payload };
       const { data } = yield call(courseService.evaluate, { payload: { ...params } });
-      console.log(data);
+      if (data.success) {
+        message.success(data.message);
+        yield put(routerRedux.push({
+          pathname: 'course/list',
+        }));
+      } else {
+        message.error(data.message);
+      }
     },
     *getTeacherGrade({ payload }, { call, put }) {
       console.log(payload);

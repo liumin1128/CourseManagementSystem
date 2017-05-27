@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Button } from 'antd';
 import styles from './IndexPage.css';
 
 function IndexPage() {
   return (
     <div className={styles.normal}>
-      <Button type="primary">Primary</Button>
-      <h1>9999999999</h1>
+      <h1 className={styles.title}>欢迎使用高校教学质量评估系统</h1>
     </div>
   );
 }
