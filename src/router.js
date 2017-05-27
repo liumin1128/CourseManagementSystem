@@ -8,6 +8,7 @@ import CourseList from './routes/CourseList.js';
 import CourseNew from './routes/CourseNew.js';
 import UsersList from './routes/UsersList.js';
 import UsersNew from './routes/UsersNew.js';
+import Sign from './routes/Sign.js';
 import EvaluateStudent from './routes/Evaluate/Student';
 import EvaluateTeacher from './routes/Evaluate/Teacher';
 import EvaluateCourse from './routes/Evaluate/Course';
@@ -18,8 +19,11 @@ import Teacher from './routes/Teacher';
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
+      <Route breadcrumbName="登录页" path="/" component={Sign} />
+      {/* <Route breadcrumbName="登录页" path="/sign" component={Sign} />*/}
       <Route path="/" breadcrumbName="后台" component={App} >
         <IndexRoute breadcrumbName="首页" component={IndexPage} />
+        <Route breadcrumbName="首页" path="/home" component={IndexPage} />
         <Route breadcrumbName="课程列表" path="/course/list" component={CourseList} />
         <Route breadcrumbName="添加课程" path="/course/new" component={CourseNew} />
         <Route breadcrumbName="用户列表" path="/users/list" component={UsersList} />

@@ -1,8 +1,12 @@
 import request from '../utils/request';
 import { myRequest } from '../utils/common.js';
 
-export async function fetch() {
-  return request('/api/course/list');
+// export async function fetch() {
+//   return request('/api/course/list');
+// }
+
+export async function fetch({ payload }) {
+  return request('/api/course/list', myRequest({ payload, method: 'POST' }));
 }
 
 export async function add({ payload }) {

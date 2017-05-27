@@ -57,7 +57,7 @@ class Main extends Component {
     console.log(this.props.location.pathname.split('/'));
     const path = this.props.location.pathname.split('/');
     const { collapsed, theme, mode, openKeys } = this.state;
-    const { children, location, routes, params } = this.props;
+    const { children, dispatch, location, routes, params, nickName, avatarUrl, type } = this.props;
     return (
       <Layout style={{ height: '100%' }}>
         <Sider
@@ -67,7 +67,7 @@ class Main extends Component {
         >
           <div className="logo">
             <img className="icon" style={{ height: '80%', borderRadius: '5px' }} src={LogoIcon} alt="" />
-            <span className="text">教学质量评测系统</span>
+            <span className="text">高校教学质量评价系统</span>
           </div>
           <Menu
             refs="menu"
@@ -80,7 +80,7 @@ class Main extends Component {
             // defaultSelectedKeys={['user']}
           >
             {
-              ROUTE_CONF.map((menu) => {
+              ROUTE_CONF[type] && ROUTE_CONF[type].map((menu) => {
                 return menu.sub ?
                   <SubMenu
                     key={menu.url}
@@ -107,7 +107,7 @@ class Main extends Component {
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
-            <MyHeader location={location} />
+            <MyHeader dispatch={dispatch} nickName={nickName} avatarUrl={avatarUrl} type={type} location={location} />
           </Header>
           <Content>
             <Breadcrumb className={styles.Breadcrumb} routes={routes} params={params} />

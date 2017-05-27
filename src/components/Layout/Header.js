@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'dva';
 import { Menu, Icon } from 'antd';
 import styles from './Header.css';
 
@@ -17,7 +16,7 @@ const SubMenu = Menu.SubMenu;
 //   hashHistory.push('/sign');
 // };
 
-function Header({ dispatch, location, userInfo }) {
+function Header({ dispatch, location, nickName, avatarUrl, type }) {
   function logOutAndGotoUrl() {
     dispatch({
       type: 'user/logout',
@@ -32,33 +31,24 @@ function Header({ dispatch, location, userInfo }) {
         mode="horizontal"
         // theme="dark"
       >
-        {
-          userInfo &&
-          <SubMenu
-            className={styles.user}
-            title={
-                userInfo ? <span className={styles.userInfo}>
-                  <img className={styles.avatar} src={userInfo.avatar} alt="" />
-                  {userInfo.nickName}
-                </span> : <span><Icon type="user" /> 管理员</span>
-          }
-          >
-            <Menu.Item key="setting:1"><a onClick={logOutAndGotoUrl}>注销登录</a></Menu.Item>
-          </SubMenu>
-        }
+        <SubMenu
+          className={styles.user}
+          title={
+            <span className={styles.userInfo}>
+              <img className={styles.avatar} src={avatarUrl} alt="" />
+              {type === 'admin' && '管理员：'}
+              {type === 'student' && '学生：'}
+              {type === 'teacher' && '教师：'}
+              {nickName || '未登录？'}
+            </span>
+            }
+        >
+          <Menu.Item key="setting:1"><a onClick={logOutAndGotoUrl}>注销登录</a></Menu.Item>
+        </SubMenu>
       </Menu>
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  const { userInfo } = state.user;
-  return {
-    userInfo,
-    loading: state.loading.models.login,
-  };
-}
-
-
-export default connect(mapStateToProps)(Header);
+export default Header;
 

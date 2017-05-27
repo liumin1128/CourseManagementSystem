@@ -1,3 +1,4 @@
+import request from './request';
 
 export const notEmpty = (obj, label) => {
   return new Promise((resolve, reject) => {
@@ -56,4 +57,8 @@ export const myRequest = ({ payload, method }) => {
     method,
     body: JSON.stringify(payload),
   };
+};
+
+export const fetch = (url, payload, method = 'POST') => {
+  return request(url, myRequest({ payload, method }));
 };
