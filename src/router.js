@@ -4,15 +4,10 @@ import App from './routes/App.js';
 import Error from './routes/Error.js';
 
 import IndexPage from './routes/IndexPage';
-
 import CourseList from './routes/CourseList.js';
-
 import CourseNew from './routes/CourseNew.js';
-
 import UsersList from './routes/UsersList.js';
-
 import UsersNew from './routes/UsersNew.js';
-
 import EvaluateStudent from './routes/Evaluate/Student';
 import EvaluateTeacher from './routes/Evaluate/Teacher';
 import EvaluateCourse from './routes/Evaluate/Course';
