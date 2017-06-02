@@ -5,10 +5,54 @@ import { Card, Tooltip, Button, Popover, Tag } from 'antd';
 import Table from '../components/Ui/Table';
 import styles from './CourseList.less';
 
+const levelToGrade = (level) => {
+  return level.map((i) => {
+    switch (i) {
+      case 1:return 100;
+      case 2: return 80;
+      case 3: return 70;
+      case 4: return 60;
+      default: return 60;
+    }
+  });
+};
+
+const levelToResult = (data) => {
+  let temp = 0;
+  const width = [0.5, 0.5, 1, 1, 1.5, 1.5, 1, 1, 1, 1];
+  data.map((i, index) => {
+    temp += data[index] * width[index];
+  });
+  return temp;
+};
+
+const getResult = (achievement) => {
+  let result = 0;
+  achievement.map((i) => {
+    result += levelToResult(levelToGrade(i.level));
+  });
+  result /= achievement.length;
+  return result;
+};
+
+const getStr = (num) => {
+  if (num >= 900) {
+    return '优秀';
+  } else if (num >= 800) {
+    return '良好';
+  } else if (num >= 700) {
+    return '中等';
+  } else if (num >= 600) {
+    return '及格';
+  } else {
+    return '不及格';
+  }
+};
+
 class CourseList extends Component {
   constructor(props) {
     super(props);
-    this.keys = ['name', 'desc', 'teacher', 'select', 'createdAt', 'op'];
+    this.keys = ['name', 'desc', 'result', 'createdAt', 'op'];
     this.columns = [{
       title: '名称',
       dataIndex: 'name',
@@ -18,53 +62,32 @@ class CourseList extends Component {
       dataIndex: 'desc',
       key: 'desc',
     }, {
-      title: '选课状态',
-      dataIndex: 'select',
-      key: 'select',
-      render: (select) => {
-        return select ? <Tag color="green">已选</Tag> : <Tag color="purple">未选</Tag>;
-      },
+      title: '成绩',
+      dataIndex: 'achievement',
+      key: 'result',
+      render: achievement => <div>
+        {/* {achievement.map(i =>
+          <div key={i._id}>
+            <p>评分结果： {i.level.join('-')}</p>
+            <p>换成分数： { i.level && levelToGrade(i.level)}</p>
+            <p>换成分数： { i.level && levelToResult(levelToGrade(i.level))}</p>
+          </div>,
+        )}
+        平均成绩：{getResult(achievement)}*/}
+        {getStr(getResult(achievement))}
+      </div>,
     }, {
-      title: '授课老师',
-      dataIndex: 'teacher',
-      key: 'teacher',
-      render: teacher => <Popover
-        content={<div style={{ maxWidth: 300 }}>
-          <ul>
-            <li><img style={{ width: 100, height: 100 }} src={teacher && teacher.avatarUrl} alt="" /></li>
-            <li>姓名：{teacher && teacher.nickName}</li>
-          </ul>
-        </div>} title="教师信息"
-      >
-        <a>{teacher && teacher.nickName}</a>
-      </Popover>,
-    }, {
-      title: '学生列表',
-      dataIndex: 'students',
-      key: 'students',
-      render: students => <Popover
-        content={<div style={{ maxWidth: 300 }}>
-          {students.map(i => <Tag key={i._id} color="cyan">{i.nickName}</Tag>)}
-        </div>} title="当前听课学生"
-      >
-        <a>{students.length}名学生</a>
-      </Popover>,
-    }, {
-      title: '操作',
-      dataIndex: 'op',
-      key: 'op',
-      render: (i, record) => <span className={styles.operation}>
-        {/* <a onClick={this.edite.bind(this, record)}>编辑</a>*/}
-
-        {
-          this.props.type === 'admin' ? <div>
-            <a onClick={this.delHandler.bind(this, record)}>删除</a>
-          </div> : <div>
-            <a onClick={this.selectHandler.bind(this, record)}>{record.select ? '退课' : '选课' }</a>
-            {record.select && <a onClick={this.evaluateHandler.bind(this, record)}>评价</a>}
-          </div>
-        }
-      </span>,
+      title: '评分结果',
+      dataIndex: 'achievement',
+      key: 'achievement',
+      render: achievement => <div>
+        {achievement.map(i =>
+          <div key={i._id}>
+            <p>{i.level.join('-')}</p>
+            <p>{i.sub}</p>
+          </div>,
+        )}
+      </div>,
     }];
   }
   evaluateHandler = (record) => {
@@ -113,7 +136,7 @@ class CourseList extends Component {
 }
 
 function mapStateToProps(state) {
-  const { list } = state.course;
+  const { list } = state.achievement;
   const { type } = state.user;
   return {
     list,

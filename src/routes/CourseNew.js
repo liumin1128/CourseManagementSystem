@@ -7,31 +7,6 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 
 class CourseNew extends React.Component {
-  state = {
-    teachers: [{
-      _id: '590ec0429c6c3b0cb82f24df',
-      nickName: '刘老师',
-      username: 'liumin',
-      password: '123456',
-      avatarUrl: 'http://om4lyr5bv.bkt.clouddn.com/user.svg',
-      __v: 0,
-      updatedAt: '2017-05-07T06:35:46.823Z',
-      createdAt: '2017-05-07T06:35:46.823Z',
-      grade: 0,
-      type: 'teacher',
-    }, {
-      _id: '590ec34a9c6c3b0cb82f24e0',
-      nickName: '梁老师',
-      username: 'ldy',
-      password: '123456',
-      avatarUrl: 'http://om4lyr5bv.bkt.clouddn.com/avatar.png',
-      __v: 0,
-      updatedAt: '2017-05-07T06:48:42.184Z',
-      createdAt: '2017-05-07T06:48:42.184Z',
-      grade: 0,
-      type: 'teacher',
-    }],
-  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -52,7 +27,7 @@ class CourseNew extends React.Component {
   };
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { teachers } = this.state;
+    const { teachers } = this.props;
     return (
       <div className={styles.normal}>
         <Form onSubmit={this.handleSubmit}>
@@ -92,7 +67,7 @@ class CourseNew extends React.Component {
                 // onChange={handleChange}
               >
                 {
-                  teachers.map(i =>
+                  teachers && teachers.map(i =>
                     <Option key={i._id} value={i._id} style={{ display: 'flex', alignItems: 'center' }}>
                       <img style={{ width: 24, height: 24, marginRight: 10 }} src={i.avatarUrl} alt="" />
                       {i.nickName}
@@ -115,8 +90,9 @@ class CourseNew extends React.Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  const { teachers } = state.course;
+  return { teachers };
 }
 
 export default connect(mapStateToProps)(Form.create()(CourseNew));

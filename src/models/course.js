@@ -7,6 +7,7 @@ export default {
   namespace: 'course',
   state: {
     list: [],
+    teachers: [],
   },
   reducers: {
     save(state, { payload }) { return { ...state, ...payload }; },
@@ -67,12 +68,19 @@ export default {
       const { data } = yield call(courseService.getTeacherGrade, { payload: { id: '590ec0429c6c3b0cb82f24df' } });
       console.log(data);
     },
+    *getTeacherList({ payload }, { call, put }) {
+      const { data: { data } } = yield call(courseService.getTeacherList, {});
+      yield put({ type: 'save', payload: { teachers: data } });
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/course/list') {
           dispatch({ type: 'fetch', query });
+        }
+        if (pathname === '/course/new') {
+          dispatch({ type: 'getTeacherList', query });
         }
         if (pathname === '/teacher') {
           dispatch({ type: 'getTeacherGrade', query });

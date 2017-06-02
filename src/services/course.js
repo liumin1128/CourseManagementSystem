@@ -29,3 +29,7 @@ export async function getTeacherGrade({ payload }) {
   return request('/api/teacher/getgrade', myRequest({ payload, method: 'POST' }));
 }
 
+export async function getTeacherList({ payload }) {
+  return request('/api/users/getTeacherList', myRequest({ payload, method: 'POST' }));
+}
+

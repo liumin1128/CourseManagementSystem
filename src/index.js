@@ -18,6 +18,7 @@ app.model(require('./models/persist'));
 app.model(require('./models/users'));
 app.model(require('./models/course'));
 app.model(require('./models/user'));
+app.model(require('./models/achievement'));
 
 // 2. Plugins
 // app.use({});

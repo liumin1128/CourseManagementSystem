@@ -57,11 +57,13 @@ class CourseList extends Component {
         {/* <a onClick={this.edite.bind(this, record)}>编辑</a>*/}
 
         {
-          this.props.type === 'admin' ? <div>
+          this.props.type === 'administrator' ? <div>
             <a onClick={this.delHandler.bind(this, record)}>删除</a>
           </div> : <div>
-            <a onClick={this.selectHandler.bind(this, record)}>{record.select ? '退课' : '选课' }</a>
-            {record.select && <a onClick={this.evaluateHandler.bind(this, record)}>评价</a>}
+            {record.select ?
+              <a onClick={this.evaluateHandler.bind(this, record)}>评价</a> :
+              <a onClick={this.selectHandler.bind(this, record)}>选课</a>
+            }
           </div>
         }
       </span>,

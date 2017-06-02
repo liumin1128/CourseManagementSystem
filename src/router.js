@@ -15,6 +15,7 @@ import EvaluateCourse from './routes/Evaluate/Course';
 import EvaluateExpert from './routes/Evaluate/Expert';
 
 import Teacher from './routes/Teacher';
+import Achievement from './routes/Achievement';
 
 function RouterConfig({ history }) {
   return (
@@ -34,6 +35,7 @@ function RouterConfig({ history }) {
         <Route breadcrumbName="学生评价" path="/evaluate/student" component={EvaluateStudent} />
         <Route breadcrumbName="督导组，专家，教师评价" path="/evaluate/expert" component={EvaluateExpert} />
         <Route breadcrumbName="教师主页" path="/teacher" component={Teacher} />
+        <Route breadcrumbName="教师主页" path="/teacher/achievement" component={Achievement} />
       </Route>
       <Route path="*" component={Error} />
     </Router>
