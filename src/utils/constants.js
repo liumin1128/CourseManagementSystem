@@ -44,8 +44,8 @@ export const ROUTE_CONF = {
       url: '/course',
       sub: [{
         text: '课程列表',
-        key: 'course/list',
-        url: '/course/list',
+        key: 'admin/course/list',
+        url: '/admin/course/list',
         auth: 'course',
       }, {
         text: '添加课程',

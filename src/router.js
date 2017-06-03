@@ -14,6 +14,8 @@ import EvaluateTeacher from './routes/Evaluate/Teacher';
 import EvaluateCourse from './routes/Evaluate/Course';
 import EvaluateExpert from './routes/Evaluate/Expert';
 
+import AdminCourseList from './routes/Admin/CourseList';
+
 import Teacher from './routes/Teacher';
 import Achievement from './routes/Achievement';
 
@@ -25,6 +27,7 @@ function RouterConfig({ history }) {
       <Route path="/" breadcrumbName="后台" component={App} >
         <IndexRoute breadcrumbName="首页" component={IndexPage} />
         <Route breadcrumbName="首页" path="/home" component={IndexPage} />
+        <Route breadcrumbName="课程列表" path="/admin/course/list" component={AdminCourseList} />
         <Route breadcrumbName="课程列表" path="/course/list" component={CourseList} />
         <Route breadcrumbName="添加课程" path="/course/new" component={CourseNew} />
         <Route breadcrumbName="用户列表" path="/users/list" component={UsersList} />

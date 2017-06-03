@@ -13,6 +13,9 @@ export default {
       const { data } = yield call(userService.login, { payload });
       if (data.success) {
         message.success('登录成功');
+        if (window.localStorage) {
+          localStorage.setItem('token', data.token);
+        }
         yield put({
           type: 'save',
           payload: {
@@ -39,11 +42,15 @@ export default {
       }));
     },
     *checkUser({ payload }, { select, put }) {
-      const { user } = yield select();
-      if (user.persist && !user.token) {
-        yield put(routerRedux.push({
-          pathname: '/',
-        }));
+      if (window.localStorage) {
+        const token = yield localStorage.getItem('token');
+        if (!token) {
+          yield put(routerRedux.push({
+            pathname: '/',
+          }));
+        }
+      } else {
+        message.error('浏览器不支持localStorage');
       }
     },
   },

@@ -1,6 +1,7 @@
 import request from './request';
 import { app } from '../index.js';
 import { routerRedux } from 'dva/router';
+import { message } from 'antd';
 
 export const notEmpty = (obj, label) => {
   return new Promise((resolve, reject) => {
@@ -51,23 +52,27 @@ export const type2status = (type, grade) => {
 };
 
 export const myRequest = ({ payload, method }) => {
-  const { token } = app._store.getState().user;
-  if (!token) {
-    alert();
-    app._store.dispatch(routerRedux.push({
-      pathname: 'home',
-    }));
-    return;
+  if (window.localStorage) {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    if (!token) {
+      app._store.dispatch(routerRedux.push({
+        pathname: '/',
+      }));
+      message.error('用户未登录');
+    } else {
+      return {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method,
+        body: JSON.stringify({ ...payload, token }),
+      };
+    }
+  } else {
+    message.error('浏览器不支持localStorage');
   }
-  console.log(token);
-  return {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method,
-    body: JSON.stringify({ ...payload, token }),
-  };
 };
 
 export const fetch = (url, payload, method = 'POST') => {

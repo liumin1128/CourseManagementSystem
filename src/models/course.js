@@ -79,6 +79,9 @@ export default {
         if (pathname === '/course/list') {
           dispatch({ type: 'fetch', query });
         }
+        if (pathname === '/admin/course/list') {
+          dispatch({ type: 'fetch', query });
+        }
         if (pathname === '/course/new') {
           dispatch({ type: 'getTeacherList', query });
         }
