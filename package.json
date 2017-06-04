@@ -17,7 +17,8 @@
     "lodash": "^4.17.4",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
-    "redux-persist": "^4.8.0"
+    "redux-persist": "^4.8.0",
+    "xlsx": "^0.10.4"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

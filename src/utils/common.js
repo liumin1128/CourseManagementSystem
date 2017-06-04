@@ -1,7 +1,23 @@
+import { routerRedux } from 'dva/router';
+import XLSX from 'xlsx';
+import { message } from 'antd';
 import request from './request';
 import { app } from '../index.js';
-import { routerRedux } from 'dva/router';
-import { message } from 'antd';
+
+export const xlsx2Json = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = (e) => {
+      const data = e.target.result;
+      const temp = XLSX.read(data, {
+        type: 'binary',
+      });
+      const result = XLSX.utils.sheet_to_json(temp.Sheets[temp.SheetNames[0]]);
+      resolve(result);
+    };
+  });
+};
 
 export const notEmpty = (obj, label) => {
   return new Promise((resolve, reject) => {

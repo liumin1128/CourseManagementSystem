@@ -102,9 +102,9 @@ export const ROUTE_CONF = {
       url: '/setting',
       sub: [{
         text: '系统设置',
-        key: 'setting/student',
-        url: '/setting/student',
-        auth: 'setting',
+        key: 'admin/manage',
+        url: '/admin/manage',
+        auth: 'admin',
       }, {
         text: '参数设置',
         key: 'setting/expert',

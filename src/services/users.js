@@ -12,3 +12,6 @@ export async function del({ payload }) {
   return fetch('/api/users/del', payload);
 }
 
+export async function batchAdd({ payload }) {
+  return fetch('/api/users/batchadd', payload);
+}

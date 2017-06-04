@@ -13,6 +13,10 @@ export async function add({ payload }) {
   return request('/api/course/add', myRequest({ payload, method: 'POST' }));
 }
 
+export async function batchAdd({ payload }) {
+  return request('/api/course/batchadd', myRequest({ payload, method: 'POST' }));
+}
+
 export async function del({ payload }) {
   return request('/api/course/del', myRequest({ payload, method: 'DELETE' }));
 }
