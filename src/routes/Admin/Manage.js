@@ -37,7 +37,7 @@ class Manage extends Component {
                     nickName: i.name,
                     avatarUrl: 'http://om4lyr5bv.bkt.clouddn.com/user.svg',
                     type: 'student',
-                    password: i.studentId.slice(i.studentId.length - 7, i.studentId.length),
+                    password: i.studentId.slice(i.studentId.length - 6, i.studentId.length),
                   };
                 }),
               },
@@ -59,7 +59,6 @@ class Manage extends Component {
       this.setState({ data }, () => {
         confirm({
           title: '确定导入以下数据吗?',
-          width: 1000,
           content: <Table dataSource={this.state.data} size="small" />,
           onOk() {
             // return new Promise((resolve, reject) => {
@@ -70,11 +69,11 @@ class Manage extends Component {
               payload: {
                 list: data.map((i) => {
                   return {
-                    username: i.id,
+                    username: i.teacherId,
                     nickName: i.name,
                     avatarUrl: 'http://om4lyr5bv.bkt.clouddn.com/user.svg',
                     type: 'teacher',
-                    password: i.id.slice(i.id.length - 7, i.id.length),
+                    password: i.teacherId.slice(i.teacherId.length - 6, i.teacherId.length),
                   };
                 }),
               },
@@ -90,6 +89,16 @@ class Manage extends Component {
     });
     return false;
   }
+  exportStudent = (type) => {
+    this.props.dispatch({
+      type: 'users/exportUser',
+      payload: {
+        params: {
+          type,
+        },
+      },
+    });
+  }
   render() {
     const { data } = this.state;
     const { loading } = this.props;
@@ -97,7 +106,7 @@ class Manage extends Component {
       <div>
         <Card
           title="数据导入"
-          style={{ padding: 0, borderRadius: 0 }}
+          style={{ padding: 0, borderRadius: 0, marginBottom: 16 }}
           // bodyStyle={{ padding: 8 }}
         >
 
@@ -114,14 +123,39 @@ class Manage extends Component {
               </Button>
             </Upload>
 
-            <Upload beforeUpload={this.beforeUploadStudent}>
+            <Upload beforeUpload={this.beforeUploadTeacher}>
               <Button>
-                <Icon type="upload" /> 导入课程数据
+                <Icon type="upload" /> 导入评课成绩
               </Button>
             </Upload>
+
           </div>
 
         </Card>
+
+        <Card
+          title="数据导出"
+          style={{ padding: 0, borderRadius: 0 }}
+          // bodyStyle={{ padding: 8 }}
+        >
+
+          <div className={styles.flex}>
+            <Button onClick={this.exportStudent.bind(this, 'student')}>
+              <Icon type="upload" /> 导出学生数据
+            </Button>
+
+            <Button onClick={this.exportStudent.bind(this, 'teacher')}>
+              <Icon type="upload" /> 导出教师数据
+            </Button>
+
+            <Button>
+              <Icon type="upload" /> 导出评课成绩
+            </Button>
+
+          </div>
+
+        </Card>
+        <a href="" download="导出的数据.xlsx" id="hf" />
       </div>
     );
   }

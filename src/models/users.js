@@ -2,6 +2,7 @@ import { message } from 'antd';
 import { routerRedux } from 'dva/router';
 import * as usersService from '../services/users.js';
 import { formatCourseList } from '../utils/format.js';
+import { json2xlsx } from '../utils/common.js';
 
 export default {
   namespace: 'users',
@@ -28,13 +29,17 @@ export default {
       }
     },
     *batchAdd({ payload }, { call, put }) {
-      console.log(payload);
-      // const { data } = yield call(usersService.batchAdd, { payload });
-      // if (data.success) {
-      //   message.success(data.message);
-      // } else {
-      //   message.error(data.message);
-      // }
+      const { data } = yield call(usersService.batchAdd, { payload });
+      if (data.success) {
+        message.success(data.message);
+      } else {
+        message.error(data.message);
+      }
+    },
+    *exportUser({ payload }, { call, put }) {
+      const { data } = yield call(usersService.get, { payload });
+      console.log(data);
+      json2xlsx(data.users);
     },
     *del({ payload }, { call, put }) {
       const { data } = yield call(usersService.del, { payload });

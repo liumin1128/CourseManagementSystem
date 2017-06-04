@@ -1,7 +1,7 @@
 import { fetch } from '../utils/common.js';
 
-export async function get() {
-  return fetch('/api/users/list');
+export async function get({ payload }) {
+  return fetch('/api/users/list', payload);
 }
 
 export async function add({ payload }) {
