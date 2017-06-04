@@ -28,12 +28,13 @@ export default {
       }
     },
     *batchAdd({ payload }, { call, put }) {
-      const { data } = yield call(usersService.batchAdd, { payload });
-      if (data.success) {
-        message.success(data.message);
-      } else {
-        message.error(data.message);
-      }
+      console.log(payload);
+      // const { data } = yield call(usersService.batchAdd, { payload });
+      // if (data.success) {
+      //   message.success(data.message);
+      // } else {
+      //   message.error(data.message);
+      // }
     },
     *del({ payload }, { call, put }) {
       const { data } = yield call(usersService.del, { payload });
