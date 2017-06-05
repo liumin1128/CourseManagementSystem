@@ -1,11 +1,13 @@
 import React from 'react';
-import { Card, Form, Input, Button } from 'antd';
+import { Card, Form, Input, Button, message } from 'antd';
 import { connect } from 'dva';
 
 import logoIcon from '../assets/logo.jpg';
 import styles from './Sign.less';
 
 import Drag from '../components/Ui/Drag';
+
+let done = false;
 
 const FormItem = Form.Item;
 
@@ -22,17 +24,17 @@ const NormalLoginForm = ({
       if (errors) {
         return;
       }
+      if (!done) {
+        message.error('请拖动验证！');
+        return;
+      }
       dispatch({
         type: 'user/login',
         payload: values,
       });
-      // dispatch({
-      //   type: 'users/fetch',
-      //   payload: values,
-      // });
     });
   }
-
+  done = false;
   return (
     <div className={styles.normal}>
       <div className={styles.bg} />
@@ -64,8 +66,10 @@ const NormalLoginForm = ({
               ],
             })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="密码" />)}
           </FormItem>
+          <FormItem>
+            <Drag success={() => { done = true; }} />
+          </FormItem>
 
-          <Drag />
           <Button style={{ width: '100%' }} type="primary" size="large" onClick={handleOk} loading={loading}>
             登录
           </Button>

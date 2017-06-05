@@ -28,6 +28,7 @@ class Drag extends Component {
           done: true,
           text: '通过验证',
         });
+        that.success();
         that.btn.removeEventListener('mousedown', mousedown);
         that.btn.removeEventListener('mousemove', mousemove);
         that.btn.removeEventListener('mouseup', mouseup);
@@ -41,6 +42,9 @@ class Drag extends Component {
       that.bg.style.width = '0px';
     }
     this.btn.addEventListener('mousedown', mousedown);
+  }
+  success = () => {
+    this.props.success();
   }
   render() {
     const { text } = this.state;

@@ -109,7 +109,10 @@ class Main extends Component {
           <Header style={{ background: '#fff', padding: 0 }}>
             <MyHeader dispatch={dispatch} nickName={nickName} avatarUrl={avatarUrl} type={type} location={location} />
           </Header>
-          <Content>
+          <Content style={{ position: 'relative' }}>
+            {
+              // <div className={styles.bg} />
+            }
             <Breadcrumb className={styles.Breadcrumb} routes={routes} params={params} />
             {/* <Breadcrumb>
               {
