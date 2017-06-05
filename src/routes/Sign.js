@@ -5,6 +5,8 @@ import { connect } from 'dva';
 import logoIcon from '../assets/logo.jpg';
 import styles from './Sign.less';
 
+import Drag from '../components/Ui/Drag';
+
 const FormItem = Form.Item;
 
 const NormalLoginForm = ({
@@ -62,6 +64,8 @@ const NormalLoginForm = ({
               ],
             })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="密码" />)}
           </FormItem>
+
+          <Drag />
           <Button style={{ width: '100%' }} type="primary" size="large" onClick={handleOk} loading={loading}>
             登录
           </Button>
