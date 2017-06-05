@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Card, Tooltip, Button, Popover, Tag, Input, message } from 'antd';
+import { Card, Tooltip, Button, Popover, Tag, Input, message, Modal } from 'antd';
+import { levelToGrade, levelToResult, getResult, getStr } from '../../utils/achievement.js';
 import Table from '../../components/Ui/Table';
 import styles from './CourseList.less';
 
 const Search = Input.Search;
+const confirm = Modal.confirm;
 
 class CourseList extends Component {
   constructor(props) {
@@ -51,7 +53,7 @@ class CourseList extends Component {
       key: 'op',
       render: (i, record) => <span className={styles.operation}>
         <a onClick={this.delHandler.bind(this, record)}>删除</a>
-        <a onClick={this.delHandler.bind(this, record)}>查看成绩</a>
+        <a onClick={this.getGrade.bind(this, record)}>查看成绩</a>
       </span>,
     }];
   }
@@ -79,16 +81,36 @@ class CourseList extends Component {
       },
     });
   }
+  getGrade = (record) => {
+    this.props.dispatch({
+      type: 'course/getGradeByAdmin',
+      payload: {
+        id: record.id,
+      },
+      callback: (data) => {
+        console.log(data);
+        const temp = data.map((i) => {
+          return {
+            sub: i.sub,
+            grade: levelToResult(levelToGrade(i.level)),
+          };
+        });
+        confirm({
+          title: `该教师的最终成绩为：${getStr(getResult(data))}`,
+          content: <Table dataSource={temp} size="small" />,
+          onOk() {
+          },
+          onCancel() {},
+        });
+      },
+    });
+  }
   addHandler = () => {
     this.props.dispatch(routerRedux.push({
       pathname: 'course/new',
     }));
   }
   handleGetDataByFilter = (obj, val) => {
-    // if (!val) {
-    //   message.error('请输入关键字！');
-    //   return;
-    // }
     this.props.dispatch(routerRedux.push({
       pathname: this.props.location.pathname,
       query: { ...this.props.location.query,

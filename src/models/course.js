@@ -28,13 +28,9 @@ export default {
         message.error(data.message);
       }
     },
-    *batchAdd({ payload }, { call, put }) {
-      const { data } = yield call(courseService.batchAdd, { payload });
-      if (data.success) {
-        message.success(data.message);
-      } else {
-        message.error(data.message);
-      }
+    *getGradeByAdmin({ payload, callback }, { call, put }) {
+      const { data: { data } } = yield call(courseService.getGradeByAdmin, { payload });
+      yield callback(data);
     },
     *del({ payload }, { call, put }) {
       const { data } = yield call(courseService.del, { payload });
