@@ -1,3 +1,14 @@
+function arrMaxNum2(arr) {
+  return Math.max.apply(null, arr);
+}
+function arrMinNum2(arr) {
+  return Math.min.apply(null, arr);
+}
+function arrAverageNum2(arr) {
+  const sum = eval(arr.join('+'));
+  return ~~(sum / arr.length * 100) / 100;
+}
+
 export const levelToGrade = (level) => {
   return level.map((i) => {
     switch (i) {

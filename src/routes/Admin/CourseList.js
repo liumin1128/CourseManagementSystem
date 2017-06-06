@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import { Card, Tooltip, Button, Popover, Tag, Input, message, Modal } from 'antd';
 import { levelToGrade, levelToResult, getResult, getStr } from '../../utils/achievement.js';
+import { STUDENT_EVALUATE_TABLE } from '../.././utils/constants.js';
 import Table from '../../components/Ui/Table';
 import styles from './CourseList.less';
 
@@ -57,19 +58,54 @@ class CourseList extends Component {
       </span>,
     }];
   }
-  evaluateHandler = (record) => {
-    this.props.dispatch(routerRedux.push({
-      pathname: 'evaluate/student',
-      query: {
-        course: record.id,
-      },
-    }));
-  }
-  selectHandler = (record) => {
+  getGrade = (record) => {
     this.props.dispatch({
-      type: 'course/select',
+      type: 'course/getGradeByAdmin',
       payload: {
         id: record.id,
+      },
+      callback: (data) => {
+        console.log(data);
+        const test = [];
+        data.map((i) => {
+          i.level.map((j, index) => {
+            if (j >= 3) {
+              test.push({
+                index,
+                grade: j,
+              });
+            }
+          });
+        });
+        console.log(test);
+        const temp = data.map((i) => {
+          return {
+            sub: i.sub,
+            grade: levelToResult(levelToGrade(i.level)),
+          };
+        });
+        function arrAverageNum2(arr) {
+          const sum = eval(arr.join('+'));
+          return ~~(sum / arr.length * 100) / 100;
+        }
+        confirm({
+          title: data.length === 0 ? '未查询到结果！' : `该教师的最终成绩为：${getStr(getResult(data))}`,
+          content: data.length === 0 ? '该教师本学期没有教授任何课程或评课尚未开始' : <div className={styles.grade}>
+            <h5><span>该教师得分成绩单:</span> <span>平均成绩: {getResult(data)}</span></h5>
+            <Table dataSource={temp} size="small" />
+            <h5><span>该教师得分较低的项目:</span> <span>低分总数：{test.length}</span></h5>
+            <ul>
+              {test.map((i) => {
+                return (<li>
+                  {i.grade === 3 ? <Tag color="cyan">一般</Tag> : <Tag color="red">较差</Tag>}
+                  {STUDENT_EVALUATE_TABLE[i.index].standard}</li>);
+              })}
+            </ul>
+          </div>,
+          onOk() {
+          },
+          onCancel() {},
+        });
       },
     });
   }
@@ -81,27 +117,11 @@ class CourseList extends Component {
       },
     });
   }
-  getGrade = (record) => {
+  selectHandler = (record) => {
     this.props.dispatch({
-      type: 'course/getGradeByAdmin',
+      type: 'course/select',
       payload: {
         id: record.id,
-      },
-      callback: (data) => {
-        console.log(data);
-        const temp = data.map((i) => {
-          return {
-            sub: i.sub,
-            grade: levelToResult(levelToGrade(i.level)),
-          };
-        });
-        confirm({
-          title: `该教师的最终成绩为：${getStr(getResult(data))}`,
-          content: <Table dataSource={temp} size="small" />,
-          onOk() {
-          },
-          onCancel() {},
-        });
       },
     });
   }
