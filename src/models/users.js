@@ -14,7 +14,7 @@ export default {
   },
   effects: {
     *fetch({ query }, { call, put }) {
-      const { data: { users } } = yield call(usersService.get, { query });
+      const { data: { users } } = yield call(usersService.get, { query: { params: { ...query } } });
       yield put({ type: 'save', payload: { list: formatCourseList(users) } });
     },
     *add({ payload }, { call, put }) {

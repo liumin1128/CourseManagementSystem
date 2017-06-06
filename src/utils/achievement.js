@@ -1,11 +1,11 @@
 export const levelToGrade = (level) => {
   return level.map((i) => {
     switch (i) {
-      case 1:return 100;
-      case 2: return 80;
-      case 3: return 70;
-      case 4: return 60;
-      default: return 60;
+      case 1:return 10;
+      case 2: return 8;
+      case 3: return 7;
+      case 4: return 6;
+      default: return 6;
     }
   });
 };
@@ -29,13 +29,13 @@ export const getResult = (achievement) => {
 };
 
 export const getStr = (num) => {
-  if (num >= 900) {
+  if (num >= 90) {
     return '优秀';
-  } else if (num >= 800) {
+  } else if (num >= 80) {
     return '良好';
-  } else if (num >= 700) {
+  } else if (num >= 70) {
     return '中等';
-  } else if (num >= 600) {
+  } else if (num >= 60) {
     return '及格';
   } else {
     return '不及格';

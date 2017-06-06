@@ -106,10 +106,10 @@ export const ROUTE_CONF = {
         url: '/admin/manage',
         auth: 'admin',
       }, {
-        text: '参数设置',
-        key: 'setting/expert',
-        url: '/setting/expert',
-        auth: 'setting',
+        text: '修改密码',
+        key: 'user/changepw',
+        url: '/user/changepw',
+        auth: 'user',
       }],
     }, {
       text: '教师相关',

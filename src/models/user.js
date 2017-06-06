@@ -41,6 +41,11 @@ export default {
         pathname: '/',
       }));
     },
+    *changepw({ payload }, { call, put }) {
+      console.log(payload);
+      // const { data } = yield call(userService.changepw, { payload });
+      console.log(data);
+    },
     *checkUser({ payload }, { select, put }) {
       if (window.localStorage) {
         const token = yield localStorage.getItem('token');
