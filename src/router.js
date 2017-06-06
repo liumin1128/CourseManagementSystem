@@ -16,6 +16,7 @@ import EvaluateExpert from './routes/Evaluate/Expert';
 
 import AdminCourseList from './routes/Admin/CourseList';
 import Manage from './routes/Admin/Manage';
+import ChangePw from './routes/ChangePw';
 
 import Teacher from './routes/Teacher';
 import Achievement from './routes/Achievement';
@@ -41,6 +42,7 @@ function RouterConfig({ history }) {
         <Route breadcrumbName="督导组，专家，教师评价" path="/evaluate/expert" component={EvaluateExpert} />
         <Route breadcrumbName="教师主页" path="/teacher" component={Teacher} />
         <Route breadcrumbName="教师主页" path="/teacher/achievement" component={Achievement} />
+        <Route breadcrumbName="修改密码" path="/user/changepw" component={ChangePw} />
       </Route>
       <Route path="*" component={Error} />
     </Router>

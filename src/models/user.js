@@ -42,9 +42,15 @@ export default {
       }));
     },
     *changepw({ payload }, { call, put }) {
-      console.log(payload);
-      // const { data } = yield call(userService.changepw, { payload });
-      console.log(data);
+      const { data } = yield call(userService.changepw, { payload });
+      if (data.success) {
+        message.success('修改密码成功，请重新登录！');
+        yield put({
+          type: 'logout',
+        });
+      } else {
+        message.error(data.message);
+      }
     },
     *checkUser({ payload }, { select, put }) {
       if (window.localStorage) {
