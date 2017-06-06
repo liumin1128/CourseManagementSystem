@@ -4,6 +4,10 @@ export async function get({ query }) {
   return fetch('/api/users/list', query);
 }
 
+export async function list({ payload }) {
+  return fetch('/api/users/list', payload);
+}
+
 export async function add({ payload }) {
   return fetch('/api/users/add', payload);
 }

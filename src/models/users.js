@@ -37,8 +37,12 @@ export default {
       }
     },
     *exportUser({ payload }, { call, put }) {
-      const { data } = yield call(usersService.get, { payload });
-      console.log(data);
+      const { data } = yield call(usersService.list, { payload });
+      if (data.success) {
+        message.success('导出数据成功！请在Excel中查看');
+      } else {
+        message.error(data.message);
+      }
       json2xlsx(data.users);
     },
     *del({ payload }, { call, put }) {

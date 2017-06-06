@@ -146,6 +146,17 @@ export const ROUTE_CONF = {
         url: '/course/list',
         auth: 'course',
       }],
+    }, {
+      text: '系统设置',
+      key: 'setting',
+      icon: 'setting',
+      url: '/setting',
+      sub: [{
+        text: '修改密码',
+        key: 'user/changepw',
+        url: '/user/changepw',
+        auth: 'user',
+      }],
     },
   ],
   teacher: [
@@ -169,6 +180,18 @@ export const ROUTE_CONF = {
         key: 'teacher/achievement',
         url: '/teacher/achievement',
         auth: 'course',
+      }],
+    },
+    {
+      text: '系统设置',
+      key: 'setting',
+      icon: 'setting',
+      url: '/setting',
+      sub: [{
+        text: '修改密码',
+        key: 'user/changepw',
+        url: '/user/changepw',
+        auth: 'user',
       }],
     },
   ],
