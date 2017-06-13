@@ -17,6 +17,11 @@ export async function getGradeByAdmin({ payload }) {
   return request('/api/course/getGradeByAdmin', myRequest({ payload, method: 'POST' }));
 }
 
+export async function getGradeByAdminExport({ payload }) {
+  return request('/api/course/getGradeByAdminExport', myRequest({ payload, method: 'POST' }));
+}
+
+
 export async function del({ payload }) {
   return request('/api/course/del', myRequest({ payload, method: 'DELETE' }));
 }
@@ -27,6 +32,10 @@ export async function select({ payload }) {
 
 export async function evaluate({ payload }) {
   return request('/api/course/evaluate', myRequest({ payload, method: 'POST' }));
+}
+
+export async function exportevaluate({ payload }) {
+  return request('/api/course/exportevaluate', myRequest({ payload, method: 'POST' }));
 }
 
 export async function getTeacherGrade({ payload }) {

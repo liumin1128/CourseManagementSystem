@@ -89,6 +89,38 @@ class Manage extends Component {
     });
     return false;
   }
+  beforeUploadExport = (file) => {
+    const that = this;
+    xlsx2Json(file).then((data) => {
+      this.setState({ data }, () => {
+        confirm({
+          title: '确定导入以下数据吗?',
+          content: <Table dataSource={this.state.data} size="small" />,
+          onOk() {
+            that.props.dispatch({
+              type: 'course/exportevaluate',
+              payload: {
+                list: data.map((i) => {
+                  return {
+                    teacher: '590ec34a9c6c3b0cb82f24e0',
+                    course: '592a2fbc09374e2da69a0e1f',
+                    level: i.level.split('，').map((i) => { return parseInt(i, 0); }),
+                    sub: i.sub,
+                  };
+                }),
+              },
+            });
+            Modal.info({
+              title: '操作成功！',
+              onOk() {},
+            });
+          },
+          onCancel() {},
+        });
+      });
+    });
+    return false;
+  }
   exportStudent = (type) => {
     this.props.dispatch({
       type: 'users/exportUser',
@@ -123,7 +155,7 @@ class Manage extends Component {
               </Button>
             </Upload>
 
-            <Upload beforeUpload={this.beforeUploadTeacher}>
+            <Upload beforeUpload={this.beforeUploadExport}>
               <Button>
                 <Icon type="upload" /> 导入评课成绩
               </Button>

@@ -29,8 +29,9 @@ export default {
       }
     },
     *getGradeByAdmin({ payload, callback }, { call, put }) {
-      const { data: { data } } = yield call(courseService.getGradeByAdmin, { payload });
-      yield callback(data);
+      const { data: { data: studentData } } = yield call(courseService.getGradeByAdmin, { payload });
+      const { data: { data: exportData } } = yield call(courseService.getGradeByAdminExport, { payload });
+      yield callback({ studentData, exportData });
     },
     *del({ payload }, { call, put }) {
       const { data } = yield call(courseService.del, { payload });
@@ -63,6 +64,16 @@ export default {
         yield put(routerRedux.push({
           pathname: 'course/list',
         }));
+      } else {
+        message.error(data.message);
+      }
+    },
+    *exportevaluate({ payload }, { call, put, select }) {
+      console.log(payload);
+      // const params = { ...payload };
+      const { data } = yield call(courseService.exportevaluate, { payload: { ...payload } });
+      if (data.success) {
+        message.success(data.message);
       } else {
         message.error(data.message);
       }
