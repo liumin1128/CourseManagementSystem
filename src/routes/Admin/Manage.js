@@ -102,8 +102,8 @@ class Manage extends Component {
               payload: {
                 list: data.map((i) => {
                   return {
-                    teacher: '590ec34a9c6c3b0cb82f24e0',
-                    course: '592a2fbc09374e2da69a0e1f',
+                    teacher: '5940803cf25545d39d1b67ef',
+                    course: '5942072942aae720de430dfe',
                     level: i.level.split('，').map((i) => { return parseInt(i, 0); }),
                     sub: i.sub,
                   };
