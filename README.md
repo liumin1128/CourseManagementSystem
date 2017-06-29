@@ -2,6 +2,8 @@
 
 > A university teaching quality evaluation management system
 
+![](https://ucarecdn.com/08b38b68-4a72-4049-89f8-ad79f7944c88/)
+
 《高校教师教学质量评价系统的设计与实现》
 
 在线地址为：http://liumin.me:8001
